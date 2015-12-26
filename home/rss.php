@@ -48,7 +48,7 @@ quotes();
                             <p class="meta">exploit-db.com</p>
 
     <?php
-        rss('https://www.exploit-db.com/rss.xml');
+        rss('http://www.exploit-db.com/rss.xml');
     ?>
 
                         </div>
