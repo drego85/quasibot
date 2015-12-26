@@ -30,12 +30,9 @@ quotes();
     </div>
     <div id="menu">
         <ul>
-            <li class="txt_left"><?php //echo $_SERVER['DOCUMENT_ROOT'] ?></li>
-            <li class="txt_left"><?php //echo $_SERVER['PHP_SELF'] ?></li>
-            <li class="txt_center"><?php //echo date("d.m.y"); ?></li>
-            <li class="txt_right"><?php echo "Local Address: " . $_SERVER['SERVER_ADDR'] ?></li>
-            <li class="txt_left"><?php //echo  $_SERVER['SERVER_NAME'] ?></li>
-            <li class="txt_right"><?php echo "Remote Address: " . conn('http://bot.whatismyipaddress.com/') ?></li>
+         	<li class="txt_left"><?php echo "Local Address: " . $_SERVER['SERVER_ADDR'] ?></li>
+            	<li class="txt_center"></li>
+            	<li class="txt_right"><?php echo "Remote Address: " . conn('http://bot.whatismyipaddress.com/') ?></li>
         </ul>
     </div>
     <div id="page">
