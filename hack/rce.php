@@ -104,7 +104,7 @@ quotes();
                         <li>
                             <h2>Home</h2>
                             <ul>
-                                <li><a href="../home/ndex.php">Index</a></li>
+                                <li><a href="../home/index.php">Index</a></li>
                                 <li><a href="../home/settings.php">Settings</a></li>
                                 <li><a href="../home/rss.php">RSS</a></li>
                             </ul>
