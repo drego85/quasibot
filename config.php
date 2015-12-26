@@ -12,6 +12,7 @@ https://github.com/Smaash/quasibot
 
 set_time_limit(0);
 error_reporting(E_ALL);
+date_default_timezone_set('Europe/London');
 
 // Proxy -  Default TOR connection - 127.0.0.1:9050
 define('USE_PROXY', 0); //0 - No proxy, 1 - Use proxy
