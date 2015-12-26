@@ -40,15 +40,15 @@ quotes();
             <div id="page-bgbtm">
                 <div id="content">
                       <div class="post" name="top" >
-                    <h2 class="title"><center><a href="#1337day">1337day</a> - <a href="#NVD">Nation Vuln Database</a> - <a href="#securityfocus">Security Focus</a> - <a href="#cxsecurity">cxsecurity</a></center></h2>
+                    <h2 class="title"><center><a href="#Exploit-DB">Exploit-DB</a> - <a href="#NVD">Nation Vuln Database</a> - <a href="#securityfocus">Security Focus</a> - <a href="#cxsecurity">cxsecurity</a></center></h2>
                     </div>
                       <div class="post">
-                        <h2 class="title"><a name="1337day" href="#top" >1337day</a></h2>
+                        <h2 class="title"><a name="Exploit-DB" href="#top" >Exploit-DB</a></h2>
                         <div class="entry">
-                            <p class="meta">1337day.com</p>
+                            <p class="meta">exploit-db.com</p>
 
     <?php
-        rss('http://1337day.com/rss');
+        rss('https://www.exploit-db.com/rss.xml');
     ?>
 
                         </div>
