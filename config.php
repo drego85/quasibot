@@ -21,7 +21,7 @@ define('PROXY_PORT', '9050');
 // SQL Connection
 define('SQL_HOST', 'localhost');
 define('SQL_USER', 'root');
-define('SQL_PWD', 'fuckyou');
+define('SQL_PWD', 'He98MNYcMT674BcR');
 define('SQL_DB', 'quasibot');
 
 //Authentication, default credentials - quasi:changeme
