@@ -15,8 +15,8 @@ error_reporting(E_ALL);
 date_default_timezone_set('Europe/London');
 
 // Proxy -  Default TOR connection - 127.0.0.1:9050
-define('USE_PROXY', 0); //0 - No proxy, 1 - Use proxy
-define('PROXY_IP', '127.0.0.1');
+define('USE_PROXY', 1); //0 - No proxy, 1 - Use proxy
+define('PROXY_IP', 'localhost');
 define('PROXY_PORT', '9050');
 
 // SQL Connection
