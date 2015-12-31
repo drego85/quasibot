@@ -149,7 +149,7 @@ function showbots() {
 			$status = 'OK';
 		} elseif (strpos($source, 'CloudFlare')) {
 			$status = 'CloudFlare Protection';
-		} else
+		} else {
 			$status = 'BAD';
 		}
 		
